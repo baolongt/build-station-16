@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import { useWallet } from "@solana/wallet-adapter-react";
+import { Button } from "@/components/ui/button";
 
 export const MakeEscrowPage = () => {
   const [deposit, setDeposit] = useState("");
   const [receive, setReceive] = useState("");
+  const { connected } = useWallet();
 
   const handleDepositChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDeposit(event.target.value);
@@ -13,10 +17,17 @@ export const MakeEscrowPage = () => {
     setReceive(event.target.value);
   };
 
+  const handleCreateMake = async () => {
+    console.log("Create make escrow");
+    console.log("Deposit:", deposit);
+    console.log("Receive:", receive);
+  };
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <div className="p-8 space-y-4 bg-white rounded shadow-xl">
         <h2 className="text-2xl font-bold text-center">Make</h2>
+        <WalletMultiButton />
         <div className="space-y-2">
           <Input
             id="deposit"
@@ -37,12 +48,14 @@ export const MakeEscrowPage = () => {
             placeholder="Enter receive amount"
           />
         </div>
-        <button
+        <Button
           type="submit"
+          {...(!connected && { disabled: true })}
           className="w-full px-3 py-2 text-white bg-indigo-600 rounded hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          onClick={handleCreateMake}
         >
           Submit
-        </button>
+        </Button>
       </div>
     </div>
   );
