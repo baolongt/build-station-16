@@ -9,18 +9,3 @@ const connection = new Connection("http://localhost:8899", "confirmed");
 export const program = new Program<Escrow>(IDL, programId, {
     connection,
 });
-
-export class EscrowClient {
-    async make(makeInstruction: TransactionInstruction) {
-        return new Transaction().add(makeInstruction);
-
-    }
-
-    async refund(refundInstruction: TransactionInstruction) {
-        return new Transaction().add(refundInstruction);
-    }
-
-    async take(takeInstruction: TransactionInstruction) {
-        return new Transaction().add(takeInstruction);
-    }
-}

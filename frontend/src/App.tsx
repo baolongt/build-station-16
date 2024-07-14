@@ -11,6 +11,7 @@ import { MakeEscrowPage } from "./pages/MakeEscrow";
 
 // Default styles that can be overridden by your app
 import "@solana/wallet-adapter-react-ui/styles.css";
+import MainPage from "./pages/Main";
 
 function App() {
   // The network can be set to 'devnet', 'testnet', or 'mainnet-beta'.
@@ -30,7 +31,11 @@ function App() {
     <ConnectionProvider endpoint={endpoint}>
       <WalletProvider wallets={wallets} autoConnect>
         <WalletModalProvider>
-          <MakeEscrowPage />
+          <div className="w-screen">
+            <MainPage>
+              <MakeEscrowPage />
+            </MainPage>
+          </div>
         </WalletModalProvider>
       </WalletProvider>
     </ConnectionProvider>

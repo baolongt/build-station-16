@@ -7,3 +7,5 @@ node_modules
 test-ledger
 .yarn
 node_modules
+test-data
+tokens.json
