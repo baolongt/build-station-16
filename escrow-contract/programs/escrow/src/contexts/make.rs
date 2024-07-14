@@ -2,7 +2,7 @@ use anchor_lang::prelude::*;
 
 use anchor_spl::{
     associated_token::AssociatedToken,
-    token_interface::{transfer_checked, Mint, TokenAccount, TokenInterface, TransferChecked},
+    token_interface::{ transfer_checked, Mint, TokenAccount, TokenInterface, TransferChecked },
 };
 
 use crate::Escrow;
@@ -12,13 +12,9 @@ use crate::Escrow;
 pub struct Make<'info> {
     #[account(mut)]
     pub maker: Signer<'info>,
-    #[account(
-        mint::token_program = token_program
-    )]
+    #[account(mint::token_program = token_program)]
     pub mint_a: InterfaceAccount<'info, Mint>,
-    #[account(
-        mint::token_program = token_program
-    )]
+    #[account(mint::token_program = token_program)]
     pub mint_b: InterfaceAccount<'info, Mint>,
     #[account(
         mut,
